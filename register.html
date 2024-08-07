@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .container input[type="text"],
+        .container input[type="tel"],
+        .container input[type="email"],
+        .container select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .container button {
+            width: 48%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .optional-field {
+            display: none;
+            margin-bottom: 12px;
+        }
+        .logo {
+            width: 4em;
+            height: 3.8em;
+            border-radius: 2em;
+            padding: 0;
+        }
+        .container h2 {
+            border-bottom: 1px solid navy;
+            padding-bottom: 20px;
+        }
+        .email, .password {
+            margin-left: 5px;
+            font-weight: 300;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .footer a {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            padding: 8px;
+        }
+        .footer a:hover {
+            text-decoration: none;
+            background-color: #1967b9;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Class_Register</h2>
+        <form method="POST" action="register.php">
+            <div class="wrapper">
+                <img class="logo" src="logo1.png" alt="Logo">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email (must match school email)</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="class">Class</label>
+                <select id="class" name="class" required onchange="showOptionalFields()">
+                    <option value="">Select a class</option>
+                    <option value="BTECH">BTECH</option>
+                    <option value="TED">TED</option>
+                    <option value="EBS">EBS</option>
+                    <option value="BBC">BBC</option>
+                    <option value="BAJ">BAJ</option>
+                </select>
+
+                <!-- Optional fields for BTECH -->
+                <div id="btech-options" class="optional-field">
+                    <label for="btech-subclass">Specialization</label>
+                    <select id="btech-subclass" name="btech-subclass">
+                        <option value="">Route of specialization</option>
+                        <option value="MVT">MVT</option>
+                        <option value="ELT">ELT</option>
+                        <option value="WET">WET</option>
+                        <option value="WDT">WDT</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit">Register</button>
+                    <button type="button" onclick="clearForm()">Clear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showOptionalFields() {
+            var selectedClass = document.getElementById('class').value;
+            var btechOptions = document.getElementById('btech-options');
+            if (selectedClass === 'BTECH') {
+                btechOptions.style.display = 'block';
+            } else {
+                btechOptions.style.display = 'none';
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('gender').value = '';
+            document.getElementById('class').value = '';
+            document.getElementById('btech-subclass').value = '';
+            document.getElementById('btech-options').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h2 {
+            text-align: center;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .container input[type="email"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+        .container button {
+            width: 50%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .container a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 12px;
+            display: none;
+        }
+  .logo {
+            width: 4em;
+            height: 3.8em;
+            border-radius: 2em;
+            padding: 0;
+        }
+  .container h2 {
+            border-bottom: 1px solid navy;
+            padding-bottom: 20px;
+        }
+  .email, .password{
+      margin-left: 5px;
+    font-weight:300;
+  }
+  .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .footer a {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            padding: 8px;
+        }
+        .footer a:hover {
+            text-decoration: none;
+            background-color: #1967b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create Account</h2>
+        <form id="createAccountForm" method="POST" action="create_account.php">
+          <div class="wrapper">
+                <img class="logo" src="logo1.png" alt="Logo">
+            <label for="email" class="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error">Valid email ends with @mubas.ac.mw address.</div>
+
+            <label for="password" class="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div id="passwordError" class="error">Password must be at least 6 characters long.</div>
+            <span class="footer">
+            <button type="submit">Create Account</button>
+             <a href="index.html">Login</a>
+            </span>
+          </div>
+        </form>
+       
+    </div>
+  
+    <script>
+        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+            // Get the email and password values
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Regular expression for the email validation
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@mubas\.ac\.mw$/;
+            var emailValid = emailRegex.test(email);
+
+            // Check if the password is at least 6 characters long
+            var passwordValid = password.length >= 6;
+
+            // Show or hide the error messages
+            document.getElementById('emailError').style.display = emailValid ? 'none' : 'block';
+            document.getElementById('passwordError').style.display = passwordValid ? 'none' : 'block';
+
+            // If either validation fails, prevent form submission
+            if (!emailValid || !passwordValid) {
+                event.preventDefault();
+            }
+        });
+
+    </script>
+</body>
+</html>
